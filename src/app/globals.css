@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 9% 96%; /* #F0F0F0 - Light Gray */
+    --foreground: 215 28% 27%; /* #30475E - Dark Blue */
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 27%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 28% 27%;
+    --primary: 215 28% 27%; /* #30475E - Dark Blue */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 220 9% 90%;
+    --secondary-foreground: 215 28% 27%;
+    --muted: 220 9% 90%;
+    --muted-foreground: 215 28% 47%;
+    --accent: 168 26% 46%; /* #5E8B7E - Muted Teal */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 9% 85%;
+    --input: 220 9% 85%;
+    --ring: 168 26% 46%;
+    --radius: 0.5rem;
+
+    /* Department Colors */
+    --dept-engineering: 217 91% 60%; /* Blue */
+    --dept-product: 158 64% 52%; /* Green */
+    --dept-design: 38 92% 50%; /* Yellow */
+    --dept-marketing: 347 77% 58%; /* Pink */
+    --dept-sales: 14 90% 55%; /* Orange */
+  }
+
+  .dark {
+    --background: 215 28% 17%;
+    --foreground: 0 0% 98%;
+    --card: 215 28% 22%;
+    --card-foreground: 0 0% 98%;
+    --popover: 215 28% 17%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 215 28% 17%;
+    --secondary: 215 28% 27%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 215 28% 27%;
+    --muted-foreground: 220 9% 60%;
+    --accent: 168 26% 56%;
+    --accent-foreground: 215 28% 17%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 215 28% 27%;
+    --input: 215 28% 27%;
+    --ring: 168 26% 56%;
+
+    /* Department Colors */
+    --dept-engineering: 217 80% 70%;
+    --dept-product: 158 70% 62%;
+    --dept-design: 48 90% 60%;
+    --dept-marketing: 347 87% 68%;
+    --dept-sales: 24 90% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .btn-3d {
+    @apply relative border-0 text-white font-semibold;
+    background: linear-gradient(145deg, #764ba2, #667eea);
+    box-shadow: 0 6px #523d80, 0 10px 20px rgba(102, 126, 234, 0.4);
+    filter: brightness(1.1);
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+  }
+  
+  .btn-3d:active {
+    @apply transform translate-y-0.5;
+    box-shadow: 0 3px #523d80;
+  }
+
+  .animated-border-card {
+    @apply relative p-1 overflow-hidden rounded-lg;
+    background-color: transparent;
+    transition: all 0.3s ease-out;
+    transform-style: preserve-3d;
+  }
+  
+  .animated-border-card:hover {
+     transform: scale(1.05) perspective(1000px);
+  }
+
+  .animated-border-card::before {
+    content: '';
+    @apply absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-gradient-to-r from-green-400 via-pink-500 to-purple-500 opacity-0 transition-opacity duration-500;
+    animation: spin 6s linear infinite;
+    z-index: 0;
+  }
+
+  .animated-border-card:hover::before {
+    @apply opacity-100;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .card-content-wrapper {
+    @apply relative bg-card rounded-lg z-10 p-4 flex flex-col items-center text-center h-full;
+    transform: translateZ(20px);
+  }
+
+  .gradient-badge {
+    @apply inline-block bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg;
+    transform: translateZ(20px);
+  }
+}
